@@ -90,96 +90,96 @@
 
 	?>
 ------------------------------------------------------------------------------------------------------
-<DOCTYPE html>
-<html>
-	<body>
-		<center>
-		<form>
-			Email: <input type = "text" name = "email">
-			<br><br>
-			Password: <input type = "text" name = "pword1">
-			<br><br>
-			Confirm Password: <input type = "text" name = "pword2">
-			<br><br><br>
-
-			Gender: 
-			<input type = "radio" name = "gender" value = "male"> Male
-			<input type = "radio" name = "gender" value = "female"> Female
-			<br><br>
-
-			Select Country:
-			<select name = "country">
-			<option value = "UK">United Kingdom </option>
-			<option value = "aus">Australia </option>
-			<option value = "SA">South Africa </option>
-			</select>
-			<br><br>
-
-			Hobby: 
-			<input type = "checkbox" name = "hobby" value = "cricket"> Cricket 
-			<input type = "checkbox" name = "hobby" value = "football"> Football
-			<br><br>
-			Address <textarea name = "address" rows="6" cols="25"> </textarea>
-			<br><br>
-			<input type="submit" name="submit" value="Submit">
-			</center>
-		</form>
-	</body>
-</html>
-------------------------------------------------------------------------------------------------------
-Carnival Results
-Under 15 Girls 200m
-	1	Amy White
-	2	Jenny Mills
-	3	Evelyn Jones
-Under 14 Boys High Jump
-	1	John Jacobs
-	2	Peter Arnold
-	3	Cedric Appleton
-
-to
-
-<html>
-	<head>
-		<title>Carnival Results</title>
-	</head>
+	<DOCTYPE html>
+	<html>
+		<body>
+			<center>
+			<form>
+				Email: <input type = "text" name = "email">
+				<br><br>
+				Password: <input type = "text" name = "pword1">
+				<br><br>
+				Confirm Password: <input type = "text" name = "pword2">
+				<br><br><br>
 	
-	<body>
-		<center><h2>Carnival Results</h2></center>
-		<table>
-		<?php
-			$con=,ysql_connect('localhost', 'root', 'password');
-			if (!$con)
-			{
-				echo 'Error connecting to server '.mysql_error();
-				exit();
-			}
-			$db = mysql_select_db('dbname');
-			if (!db)
-			{
-				echo 'Error - no database selected '.mysql_error();
-				exit();
-			}
-			$eventqry="SELECT * FROM events ORDER BY event_no DESC";
-			$eventresult=mysql_query($eventqry);
-			while ($row=mysql_fetch_assoc($eventresult))
-			{
-				echo "<tr><td width=250>".$row['event_age']." ".$row['event_gender']
-										" ".$row['event_dist']." ".$row['event_style'].
-										"</td><td></td><td></td></tr>";
-				$resqry="SELECT a.comp_place, b.comp_sname, b.comp_fname FROM compevent a, competitor b
-						WHERE a.event_no=".$row['event_no']."
-						AND a.comp_id=b.comp_id
-						ORDER BY a.comp_place DESC";
-				$result=mysql_query($resqry);
-				
-				while ($competitorrow = mysql_fetch_assoc($result))
+				Gender: 
+				<input type = "radio" name = "gender" value = "male"> Male
+				<input type = "radio" name = "gender" value = "female"> Female
+				<br><br>
+	
+				Select Country:
+				<select name = "country">
+				<option value = "UK">United Kingdom </option>
+				<option value = "aus">Australia </option>
+				<option value = "SA">South Africa </option>
+				</select>
+				<br><br>
+	
+				Hobby: 
+				<input type = "checkbox" name = "hobby" value = "cricket"> Cricket 
+				<input type = "checkbox" name = "hobby" value = "football"> Football
+				<br><br>
+				Address <textarea name = "address" rows="6" cols="25"> </textarea>
+				<br><br>
+				<input type="submit" name="submit" value="Submit">
+				</center>
+			</form>
+		</body>
+	</html>
+------------------------------------------------------------------------------------------------------
+	Carnival Results
+	Under 15 Girls 200m
+		1	Amy White
+		2	Jenny Mills
+		3	Evelyn Jones
+	Under 14 Boys High Jump
+		1	John Jacobs
+		2	Peter Arnold
+		3	Cedric Appleton
+	
+	to
+	
+	<html>
+		<head>
+			<title>Carnival Results</title>
+		</head>
+		
+		<body>
+			<center><h2>Carnival Results</h2></center>
+			<table>
+			<?php
+				$con=,ysql_connect('localhost', 'root', 'password');
+				if (!$con)
 				{
-					echo "<tr><td>.$competitorrow['a.comp_place']."</td><td>".$competitorrow{'b.comp_fname']." ".$competitorrow['b.comp_fname']."</td></tr>";
+					echo 'Error connecting to server '.mysql_error();
+					exit();
 				}
-			}
-		?>
-		</table>
-	</body>
-</html>
+				$db = mysql_select_db('dbname');
+				if (!db)
+				{
+					echo 'Error - no database selected '.mysql_error();
+					exit();
+				}
+				$eventqry="SELECT * FROM events ORDER BY event_no DESC";
+				$eventresult=mysql_query($eventqry);
+				while ($row=mysql_fetch_assoc($eventresult))
+				{
+					echo "<tr><td width=250>".$row['event_age']." ".$row['event_gender']
+											" ".$row['event_dist']." ".$row['event_style'].
+											"</td><td></td><td></td></tr>";
+					$resqry="SELECT a.comp_place, b.comp_sname, b.comp_fname FROM compevent a, competitor b
+							WHERE a.event_no=".$row['event_no']."
+							AND a.comp_id=b.comp_id
+							ORDER BY a.comp_place DESC";
+					$result=mysql_query($resqry);
+					
+					while ($competitorrow = mysql_fetch_assoc($result))
+					{
+						echo "<tr><td>.$competitorrow['a.comp_place']."</td><td>".$competitorrow{'b.comp_fname']." ".$competitorrow['b.comp_fname']."</td></tr>";
+					}
+				}
+			?>
+			</table>
+		</body>
+	</html>
 ------------------------------------------------------------------------------------------------------
