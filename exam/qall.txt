@@ -1,0 +1,185 @@
+﻿	<?php
+		echo "$h="localhost"; $u="username"; $p="password"; $d ="dbtest"; 
+		$t ="tblmembers"; mysql_connect("$h", "$u", "$p")or die("cannot connect"); 
+		mysql_select_db("$d ")or die("cannot select DB");
+		$m=$_POST['myusername']; $y=$_POST['mypassword']; 
+		$s="SELECT * FROM $t WHERE username='$m' and password='$y'";
+		$r=mysql_query($s);
+		$count=mysql_num_rows($result);
+		if($count==1){ echo”Login successful”; }
+		else { echo "Wrong Username or Password";}";
+	?>
+	
+	to
+	
+	<?php
+		// Assign table and database values
+		$host="localhost"; 
+		$username="username"; 
+		$password="password"; 
+		$databasename ="dbtest"; 
+		$tablename ="tblmembers";
+		
+		// Connect to the server	
+		mysql_connect("$host", "$username", "$password") or die("cannot connect"); 
+		
+		// Open the database	
+		mysql_select_db("$databasename")or die("cannot select DB");
+		
+		// Assign posted data	
+		$myname=$_POST['myusername']; 
+		$mypassword=$_POST['mypassword'];
+
+		// Establish the query
+		$sqlquery="SELECT * FROM $tablename WHERE username='$myname' 
+		and password='$mypassword'";
+		
+		// Run the query
+		$result=mysql_query($sqlquery);
+		
+		// Count the number of rows
+		$count=mysql_num_rows($result);
+		
+		// If the number of rows = 1, then there is a match
+		if($count==1)
+		{ 
+			echo("$myname");
+			echo("$mypassword"); 
+		}
+		else 
+		{ 
+			echo "Wrong Username or Password";
+		}
+	?>
+------------------------------------------------------------------------------------------------------
+	x=(-b+√(b^2-4ac))/2a
+
+	to 
+
+	$x = (-$b + sqrt($b*$b – 4*$a*$c))/(2*$a)Fighter	Top Speed(km/hr)
+------------------------------------------------------------------------------------------------------
+	Phantom	780
+	Mirage	940
+	Hornet	820
+	Raptor	1150
+
+	to
+
+	a)
+	$fighter = array(‘Phantom’ => 780, ‘Mirage’ => 940, ‘Hornet’ => 820, ‘Raptor’ = 1150);
+	b)
+	$fighter[‘Phantom’] = 780;
+	$fighter[‘Mirage’] = 940;
+	$fighter[‘Hornet’] = 820;
+	$fighter[‘Raptor’] = 1150;
+------------------------------------------------------------------------------------------------------
+	Use PHP to generate a function that will print all the factors of any given integer value. 
+
+	<?php
+	
+	function printfactors($integer)
+	{
+		for ($i=1, $i<=$integer, $i++)
+		{
+			if ($integer%$i == 0)
+			{
+				          echo $i.” “;
+			}
+		}
+	}
+
+	?>
+------------------------------------------------------------------------------------------------------
+<DOCTYPE html>
+<html>
+	<body>
+		<center>
+		<form>
+			Email: <input type = "text" name = "email">
+			<br><br>
+			Password: <input type = "text" name = "pword1">
+			<br><br>
+			Confirm Password: <input type = "text" name = "pword2">
+			<br><br><br>
+
+			Gender: 
+			<input type = "radio" name = "gender" value = "male"> Male
+			<input type = "radio" name = "gender" value = "female"> Female
+			<br><br>
+
+			Select Country:
+			<select name = "country">
+			<option value = "UK">United Kingdom </option>
+			<option value = "aus">Australia </option>
+			<option value = "SA">South Africa </option>
+			</select>
+			<br><br>
+
+			Hobby: 
+			<input type = "checkbox" name = "hobby" value = "cricket"> Cricket 
+			<input type = "checkbox" name = "hobby" value = "football"> Football
+			<br><br>
+			Address <textarea name = "address" rows="6" cols="25"> </textarea>
+			<br><br>
+			<input type="submit" name="submit" value="Submit">
+			</center>
+		</form>
+	</body>
+</html>
+------------------------------------------------------------------------------------------------------
+Carnival Results
+Under 15 Girls 200m
+	1	Amy White
+	2	Jenny Mills
+	3	Evelyn Jones
+Under 14 Boys High Jump
+	1	John Jacobs
+	2	Peter Arnold
+	3	Cedric Appleton
+
+to
+
+<html>
+	<head>
+		<title>Carnival Results</title>
+	</head>
+	
+	<body>
+		<center><h2>Carnival Results</h2></center>
+		<table>
+		<?php
+			$con=,ysql_connect('localhost', 'root', 'password');
+			if (!$con)
+			{
+				echo 'Error connecting to server '.mysql_error();
+				exit();
+			}
+			$db = mysql_select_db('dbname');
+			if (!db)
+			{
+				echo 'Error - no database selected '.mysql_error();
+				exit();
+			}
+			$eventqry="SELECT * FROM events ORDER BY event_no DESC";
+			$eventresult=mysql_query($eventqry);
+			while ($row=mysql_fetch_assoc($eventresult))
+			{
+				echo "<tr><td width=250>".$row['event_age']." ".$row['event_gender']
+										" ".$row['event_dist']." ".$row['event_style'].
+										"</td><td></td><td></td></tr>";
+				$resqry="SELECT a.comp_place, b.comp_sname, b.comp_fname FROM compevent a, competitor b
+						WHERE a.event_no=".$row['event_no']."
+						AND a.comp_id=b.comp_id
+						ORDER BY a.comp_place DESC";
+				$result=mysql_query($resqry);
+				
+				while ($competitorrow = mysql_fetch_assoc($result))
+				{
+					echo "<tr><td>.$competitorrow['a.comp_place']."</td><td>".$competitorrow{'b.comp_fname']." ".$competitorrow['b.comp_fname']."</td></tr>";
+				}
+			}
+		?>
+		</table>
+	</body>
+</html>
+------------------------------------------------------------------------------------------------------
