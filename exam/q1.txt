@@ -1,0 +1,53 @@
+	<?php
+		echo "$h="localhost"; $u="username"; $p="password"; $d ="dbtest"; 
+		$t ="tblmembers"; mysql_connect("$h", "$u", "$p")or die("cannot connect"); 
+		mysql_select_db("$d ")or die("cannot select DB");
+		$m=$_POST['myusername']; $y=$_POST['mypassword']; 
+		$s="SELECT * FROM $t WHERE username='$m' and password='$y'";
+		$r=mysql_query($s);
+		$count=mysql_num_rows($result);
+		if($count==1){ echo”Login successful”; }
+		else { echo "Wrong Username or Password";}";
+	?>
+	
+	to
+	
+	<?php
+		// Assign table and database values
+		$host="localhost"; 
+		$username="username"; 
+		$password="password"; 
+		$databasename ="dbtest"; 
+		$tablename ="tblmembers";
+		
+		// Connect to the server	
+		mysql_connect("$host", "$username", "$password") or die("cannot connect"); 
+		
+		// Open the database	
+		mysql_select_db("$databasename")or die("cannot select DB");
+		
+		// Assign posted data	
+		$myname=$_POST['myusername']; 
+		$mypassword=$_POST['mypassword'];
+
+		// Establish the query
+		$sqlquery="SELECT * FROM $tablename WHERE username='$myname' 
+		and password='$mypassword'";
+		
+		// Run the query
+		$result=mysql_query($sqlquery);
+		
+		// Count the number of rows
+		$count=mysql_num_rows($result);
+		
+		// If the number of rows = 1, then there is a match
+		if($count==1)
+		{ 
+			echo("$myname");
+			echo("$mypassword"); 
+		}
+		else 
+		{ 
+			echo "Wrong Username or Password";
+		}
+	?>
